@@ -43,7 +43,7 @@
         <div class="i-input">
           <v-input v-model="keywordsTianya"></v-input>
         </div>
-        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`http://search.tianya.cn/bbs?q=${keywordsSegmentFault}`" target="_blank">搜索</a></div>
+        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`http://search.tianya.cn/bbs?q=${keywordsTianya}`" target="_blank">搜索</a></div>
       </div>
 
       <div class="item">
@@ -51,7 +51,7 @@
         <div class="i-input">
           <v-input v-model="keywordsQidian"></v-input>
         </div>
-        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://www.qidian.com/search?kw=${keywordsSegmentFault}`" target="_blank">搜索</a></div>
+        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://www.qidian.com/search?kw=${keywordsQidian}`" target="_blank">搜索</a></div>
       </div>
     </div>
   </div>
