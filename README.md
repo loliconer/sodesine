@@ -1,29 +1,10 @@
 # sodesine
 
-## Project setup
-```
-npm install
-```
+### 搜的就是站内，精准干净。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 解惑搜知乎
+- 八卦搜微博
+- 没事搜微信
+- 技术搜SegmentFault
+- 房事搜天涯
+- 小说搜起点
