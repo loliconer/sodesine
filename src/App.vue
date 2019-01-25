@@ -51,17 +51,20 @@
         <div class="i-input">
           <v-input v-model="keywordsQidian"></v-input>
         </div>
-        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://www.qidian.com/search?kw=${keywordsQidian}`" target="_blank">搜索</a></div>
+        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://${mobile?'m':'www'}.qidian.com/search?kw=${keywordsQidian}`" target="_blank">搜索</a></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import utils from 'lovue/dist/utils.esm'
+
 export default {
   name: 'app',
   data() {
     return {
+      mobile: utils.isMobile(),
       keywordsWeixinAccounts: '',
       keywordsWeixinArticles: '',
       keywordsZhihu: '',
