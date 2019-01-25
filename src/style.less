@@ -1,0 +1,38 @@
+.container {
+  width: 30vw;
+  padding-top: 100px;
+  margin: 0 auto;
+
+  .title {
+    text-align: center;
+    margin-bottom: var(--3unit);
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--3unit);
+
+    .i-input {
+      flex: 1;
+      margin: 0 var(--3unit);
+    }
+
+    .v-input {
+      width: 100%;
+    }
+
+    .v-btn {
+      display: inline-block;
+      line-height: var(--4unit);
+    }
+  }
+
+  @media (max-width: 576px) {
+    width: 100vw;
+    padding-top: var(--unit);
+    padding-left: var(--unit);
+    padding-right: var(--unit);
+  }
+}
