@@ -3,6 +3,14 @@
     <div class="container">
       <h1 class="title">搜的是内</h1>
       <div class="item">
+        <div class="i-title">谷歌</div>
+        <div class="i-input">
+          <v-input v-model="keywordsGoogle"></v-input>
+        </div>
+        <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://www.google.com/search?q=${keywordsGoogle}`" target="_blank">搜索</a></div>
+      </div>
+
+      <div class="item">
         <div class="i-title">知乎</div>
         <div class="i-input"><v-input v-model="keywordsZhihu"></v-input></div>
         <div class="i-btn"><a class="v-btn v-btn-primary" :href="`https://www.zhihu.com/search?type=content&q=${keywordsZhihu}`" target="_blank">搜索</a></div>
@@ -65,6 +73,7 @@ export default {
   data() {
     return {
       mobile: utils.isMobile(),
+      keywordsGoogle: '',
       keywordsWeixinAccounts: '',
       keywordsWeixinArticles: '',
       keywordsZhihu: '',
