@@ -8,3 +8,5 @@
 - 技术搜SegmentFault
 - 房事搜天涯
 - 小说搜起点
+
+[访问](https://www.yikeyong.com/sodesine)
