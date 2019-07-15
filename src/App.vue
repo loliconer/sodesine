@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1 class="title">搜的是内</h1>
+      <div class="logo"><img src="/img/logo.svg"></div>
       <div class="search-row">
         <v-input v-model="keyword" :placeholder="placeholder"></v-input>
         <a :href="searchUrl" target="_blank"><v-button>搜索</v-button></a>
