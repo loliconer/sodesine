@@ -3,7 +3,7 @@
     <div class="container">
       <div class="logo"><img src="/img/logo.svg"></div>
       <div class="search-row">
-        <v-input v-model="keyword" :placeholder="placeholder"></v-input>
+        <v-input v-model="keyword" :placeholder="placeholder" @enter="searchButton.click()"></v-input>
         <a :href="searchUrl" target="_blank"><v-button>搜索</v-button></a>
       </div>
       <div class="engines">
@@ -15,6 +15,35 @@
 
 <script>
   import {isMobile} from 'lovue/dist/utils.esm'
+  import Button from 'lovue/src/components/Button'
+  import Input from 'lovue/src/components/Input'
+  import RadioGroup from 'lovue/src/components/RadioGroup'
+
+  const engines = {
+    google: ['谷歌', 'https://www.google.com/search?q=${keyword}', '外事问谷歌'],
+    zhihu: ['知乎', 'https://www.zhihu.com/search?type=content&q=${keyword}', '解惑问知乎'],
+    weibo: ['微博', 'https://s.weibo.com/weibo?q=${keyword}', '八卦问微博'],
+    tianya: ['天涯', 'http://search.tianya.cn/bbs?q=${keyword}', '房事问天涯'],
+    weixinAccounts: ['微信公众号', 'http://weixin.sogou.com/weixin?query=${keyword}', '没事问微信'],
+    weixinArticles: ['微信文章', 'http://weixin.sogou.com/weixin?query=ll -h${keyword}&type=2', '没事问微信'],
+    segmentFault: ['SegmentFault', 'https://segmentfault.com/search?q=${keyword}', '技术问SegmentFault'],
+    qidian: ['起点文学', '', '小说问起点'],
+    huaban: ['花瓣', 'https://huaban.com/search/?q=${keyword}', ''],
+    '500px': ['500px', 'https://500px.me/community/search?key=${keyword}&searchtype=photos', ''],
+    neteaseMusic: ['网易云音乐', 'https://music.163.com/#/search/m/?s=${keyword}', ''],
+    xiami: ['虾米音乐', 'https://www.xiami.com/search?key=${keyword}', ''],
+    qqMusic: ['QQ音乐', 'https://y.qq.com/portal/search.html#w=${keyword}', ''],
+    kugou: ['酷狗音乐', 'https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=${keyword}', ''],
+    bilibili: ['哔哩哔哩', 'https://search.bilibili.com/all?keyword=${keyword}', ''],
+    youku: ['优酷视频', 'https://so.youku.com/search_video/q_${keyword}', ''],
+    tencentVideo: ['腾讯视频', 'https://v.qq.com/x/search/?q=${keyword}', ''],
+    tmall: ['天猫', 'https://list.tmall.com/search_product.htm?q=${keyword}', ''],
+    jd: ['京东', 'https://search.jd.com/Search?keyword=${keyword}&enc=utf-8', ''],
+    lookao: ['Lookao', 'https://lookao.com/search?q=${keyword}', ''],
+    linux: ['Linux命令', 'https://wangchujiang.com/linux-command/list.html#!kw=${keyword}', ''],
+    miji: ['秘迹搜索', 'https://mijisou.com/?q=${keyword}', ''],
+    toutiao: ['头条搜索', 'https://m.toutiao.com/search/?keyword=${keyword}', ''],
+  }
 
 export default {
   name: 'app',
@@ -23,142 +52,28 @@ export default {
       mobile: isMobile(),
       keyword: '',
       engine: 'google',
-      engines: [
-        { name: '谷歌', value: 'google' },
-        { name: '知乎', value: 'zhihu' },
-        { name: '微博', value: 'weibo' },
-        { name: '天涯', value: 'tianya' },
-        { name: '微信公众号', value: 'weixinAccounts' },
-        { name: '微信文章', value: 'weixinArticles' },
-        { name: 'SegmentFault', value: 'segmentFault' },
-        { name: '起点文学', value: 'qidian' },
-        { name: '花瓣', value: 'huaban' },
-        { name: '500px', value: '500px' },
-        { name: '网易云音乐', value: 'neteaseMusic' },
-        { name: '虾米音乐', value: 'xiami' },
-        { name: 'QQ音乐', value: 'qqMusic' },
-        { name: '酷狗音乐', value: 'kugou' },
-        { name: '哔哩哔哩', value: 'bilibili' },
-        { name: '优酷视频', value: 'youku' },
-        { name: '腾讯视频', value: 'tencentVideo' },
-        { name: '天猫', value: 'tmall' },
-        { name: '京东', value: 'jd' },
-      ]
+      engines: Object.keys(engines).map(row => ({ name: engines[row][0], value: row })),
+      searchButton: null
     }
+  },
+  components: {
+    [Button.name]: Button,
+    [Input.name]: Input,
+    [RadioGroup.name]: RadioGroup
   },
   computed: {
     placeholder() {
-      switch (this.engine) {
-        case 'google':
-          return '外事问谷歌'
-        case 'zhihu':
-          return '解惑问知乎'
-        case 'weibo':
-          return '八卦问微博'
-        case 'weixinAccounts':
-          return '没事问微信'
-        case 'weixinArticles':
-          return '没事问微信'
-        case 'segmentFault':
-          return '技术问SegmentFault'
-        case 'tianya':
-          return '房事问天涯'
-        case 'qidian':
-          return '小说问起点'
-        case 'huaban':
-          return '花瓣网'
-        case '500px':
-          return '500px'
-        case 'neteaseMusic':
-          return '网易云音乐'
-        case 'xiami':
-          return '虾米音乐'
-        case 'qqMusic':
-          return 'QQ音乐'
-        case 'kugou':
-          return '酷狗音乐'
-        case 'bilibili':
-          return '哔哩哔哩'
-        case 'youku':
-          return '优酷视频'
-        case 'tencentVideo':
-          return '腾讯视频'
-        case 'tmall':
-          return '天猫'
-        case 'jd':
-          return '京东'
-        default:
-          break
-      }
+      return engines[this.engine][2] || engines[this.engine][0]
     },
     searchUrl() {
       const { keyword, engine, mobile } = this
 
-      let url = ''
-      switch (engine) {
-        case 'google':
-          url = `https://www.google.com/search?q=${keyword}`
-          break
-        case 'zhihu':
-          url = `https://www.zhihu.com/search?type=content&q=${keyword}`
-          break
-        case 'weibo':
-          url = `https://s.weibo.com/weibo?q=${keyword}`
-          break
-        case 'weixinAccounts':
-          url = `http://weixin.sogou.com/weixin?query=${keyword}`
-          break
-        case 'weixinArticles':
-          url = `http://weixin.sogou.com/weixin?query=ll -h${keyword}&type=2`
-          break
-        case 'segmentFault':
-          url = `https://segmentfault.com/search?q=${keyword}`
-          break
-        case 'tianya':
-          url = `http://search.tianya.cn/bbs?q=${keyword}`
-          break
-        case 'qidian':
-          url = `https://${mobile ? 'm' : 'www'}.qidian.com/search?kw=${keyword}`
-          break
-        case 'huaban':
-          url = `https://huaban.com/search/?q=${keyword}`
-          break
-        case '500px':
-          url = `https://500px.me/community/search?key=${keyword}&searchtype=photos`
-          break
-        case 'neteaseMusic':
-          url = `https://music.163.com/#/search/m/?s=${keyword}`
-          break
-        case 'xiami':
-          url = `https://www.xiami.com/search?key=${keyword}`
-          break
-        case 'qqMusic':
-          url = `https://y.qq.com/portal/search.html#w=${keyword}`
-          break
-        case 'kugou':
-          url = `https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=${keyword}`
-          break
-        case 'bilibili':
-          url = `https://search.bilibili.com/all?keyword=${keyword}`
-          break
-        case 'youku':
-          url = `https://so.youku.com/search_video/q_${keyword}`
-          break
-        case 'tencentVideo':
-          url = `https://v.qq.com/x/search/?q=${keyword}`
-          break
-        case 'tmall':
-          url = `https://list.tmall.com/search_product.htm?q=${keyword}`
-          break
-        case 'jd':
-          url = `https://search.jd.com/Search?keyword=${keyword}&enc=utf-8`
-          break
-        default:
-          break
-      }
-
-      return url
+      if (engine === 'qidian') return `https://${mobile ? 'm' : 'www'}.qidian.com/search?kw=${keyword}`
+      return engines[engine][1].replace('${keyword}', keyword)
     }
+  },
+  mounted() {
+    this.searchButton = this.$el.querySelector('.search-row > a')
   }
 }
 </script>
