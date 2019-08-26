@@ -51,9 +51,14 @@ export default {
     return {
       mobile: isMobile(),
       keyword: '',
-      engine: 'google',
+      engine: localStorage.engine || 'google',
       engines: Object.keys(engines).map(row => ({ name: engines[row][0], value: row })),
       searchButton: null
+    }
+  },
+  watch: {
+    engine(val) {
+      localStorage.engine = val
     }
   },
   components: {
