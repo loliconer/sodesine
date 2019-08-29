@@ -10,4 +10,4 @@
 - 房事问天涯
 - 小说问起点
 
-[访问](https://www.yikeyong.com/sodesine)
+[访问](https://sodesine.yikeyong.com/)
