@@ -43,6 +43,7 @@
     linux: ['Linux命令', 'https://wangchujiang.com/linux-command/list.html#!kw=${keyword}', ''],
     miji: ['秘迹搜索', 'https://mijisou.com/?q=${keyword}', ''],
     toutiao: ['头条搜索', 'https://m.toutiao.com/search/?keyword=${keyword}', ''],
+    magi: ['Magi', 'https://magi.com/search?q=${keyword}', ''],
   }
 
 export default {
